@@ -1,6 +1,8 @@
-from sqlalchemy import Column, String, Integer, Date, Table, ForeignKey
+from sqlalchemy import Column, String, Integer, Date, Table, ForeignKey, PickleType
 from app.database import Base
 from sqlalchemy.orm import relationship
+from sqlalchemy.ext.mutable import MutableList
+
 
 class Company(Base):
     __tablename__ = 'internships'
@@ -13,12 +15,15 @@ class Company(Base):
     internship_detail_top = Column(String)
     internship_proposal = Column(String)
     company_logo = Column(String)
-    category_id = Column(Integer)
+    category_id = Column(Integer,ForeignKey('categories.category_id'))
     internship_detail_1 = Column(String)
     internship_detail_2 = Column(String)
     internship_image_1 = Column(String)
     internship_image_2 = Column(String)
     keywords=relationship("InternshipKeywords")
+
+    def __init__(self):
+        self.keyword=[]
 
 class InternshipKeywords(Base):
     __tablename__ = 'internships_keywords'
@@ -34,6 +39,7 @@ class Categories(Base):
     category_id = Column(Integer, primary_key=True)
     category_name = Column(String)
     category_icon = Column(String)
+    company = relationship("Company")
 
 class Keywords(Base):
     __tablename__ = 'keywords'
