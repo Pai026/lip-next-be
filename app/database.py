@@ -10,7 +10,7 @@ password = os.environ.get("PASSWORD_DB") or config["PASSWORD_DB"]
 database = os.environ.get("DATABASE") or config["DATABASE"]
 host = os.environ.get("HOST") or config["HOST"]
 
-SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://"+username+":"+password+"@"+host+"/"+database
+SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://" + username + ":" + password + "@" + host + "/" + database
 
 
 engine = create_engine(

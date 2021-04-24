@@ -17,7 +17,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.include_router(CompanyRouter,tags=["Company"],prefix="/api/v1/company")
+app.include_router(CompanyRouter, tags=["Company"], prefix="/api/v1/company")
+
 
 @app.get("/")
 def read_root():
