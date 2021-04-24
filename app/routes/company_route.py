@@ -32,3 +32,7 @@ def get_all_category_ids(db: Session = Depends(get_db)):
 @router.get("/keywords",response_description="Get All Keywords")
 def get_all_keywords(db: Session = Depends(get_db)):
     return company_service.get_all_keywords(db)
+
+@router.get("/keywordsofcompany",response_description="Get Keywords Of Company")
+def get_keywords_of_company(id:int,db: Session = Depends(get_db)):
+    return company_service.get_keywords_of_company(db,id)

@@ -25,7 +25,8 @@ class InternshipKeywords(Base):
 
     id = Column(Integer, primary_key=True)
     internship_id = Column(Integer,ForeignKey('internships.internship_id'))
-    keyword_id = Column(Integer)
+    keyword_id = Column(Integer,ForeignKey('keywords.keyword_id'))
+    
 
 class Categories(Base):
     __tablename__ = 'categories'
@@ -39,3 +40,4 @@ class Keywords(Base):
 
     keyword_id = Column(Integer, primary_key=True)
     keyword_name = Column(String)
+    keywords=relationship("InternshipKeywords")

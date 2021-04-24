@@ -26,3 +26,5 @@ def get_all_category_ids(db: Session):
 
 def get_all_keywords(db: Session):
     return db.query(Keywords).all()
+def get_keywords_of_company(db: Session,iid):
+    return db.query(Keywords).join(InternshipKeywords,Keywords.keywords).filter(InternshipKeywords.internship_id == iid).all()
