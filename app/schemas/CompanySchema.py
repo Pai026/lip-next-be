@@ -33,3 +33,9 @@ class Categories(Base):
     category_id = Column(Integer, primary_key=True)
     category_name = Column(String)
     category_icon = Column(String)
+
+class Keywords(Base):
+    __tablename__ = 'keywords'
+
+    keyword_id = Column(Integer, primary_key=True)
+    keyword_name = Column(String)

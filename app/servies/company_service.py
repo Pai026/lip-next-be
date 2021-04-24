@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from ..schemas.CompanySchema import (Company, InternshipKeywords, Categories)
+from ..schemas.CompanySchema import (Company, InternshipKeywords, Categories, Keywords)
 def get_all_companies(db: Session,start,end):
     return db.query(Company).offset(start).limit(end).all()
     
@@ -12,6 +12,8 @@ def get_company_by_category_id(db: Session,id):
 def get_company_by_occupation_or_keyword(db: Session,oid,kid):
     occupation_list = db.query(Company).filter(Company.category_id == oid).all()
     keyword_list = db.query(InternshipKeywords).filter(InternshipKeywords.keyword_id == kid).all()
+    if(kid==0) and (oid==0):
+        return db.query(Company).all()
     if(kid==0):
         return occupation_list
     elif(oid==0):
@@ -21,3 +23,6 @@ def get_company_by_occupation_or_keyword(db: Session,oid,kid):
 
 def get_all_category_ids(db: Session):
     return db.query(Categories).all()
+
+def get_all_keywords(db: Session):
+    return db.query(Keywords).all()

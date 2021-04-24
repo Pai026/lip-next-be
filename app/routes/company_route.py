@@ -28,3 +28,7 @@ def get_company_by_occupation_or_keyword(oid:int=0,kid:int=0,db: Session = Depen
 @router.get("/categories",response_description="Get All Category Ids")
 def get_all_category_ids(db: Session = Depends(get_db)):
     return company_service.get_all_category_ids(db)
+
+@router.get("/keywords",response_description="Get All Keywords")
+def get_all_keywords(db: Session = Depends(get_db)):
+    return company_service.get_all_keywords(db)
