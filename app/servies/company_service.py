@@ -21,7 +21,6 @@ def push_keyword_into_company_class(data, db):
 
 def get_company_by_id(db: Session, id):
     data = db.query(Company, Categories).join(Company, Categories.company).filter(Company.internship_id == id).first()
-    print(data.Company)
     data.Company.__init__()
     keyword = get_keywords_of_company(db, data.Company.internship_id)
     if(keyword == []):
